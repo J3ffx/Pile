@@ -1,2 +1,0 @@
-circle 50 50 50 true true yellow BLUE
-text 70 80 youhou true true pink black blue 20
