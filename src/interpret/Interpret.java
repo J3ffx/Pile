@@ -6,15 +6,18 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import dictionnaire.Dictionnaire;
 import piling.Pile;
 
 public class Interpret {
 	private String code;
 	private ArrayList<String> list;
 	private Pile pile;
+	private Dictionnaire dico;
 
 	public Interpret() {
 		pile = new Pile();
+		dico = new Dictionnaire();
 
 	}
 
@@ -41,17 +44,20 @@ public class Interpret {
 		return Integer.parseInt(s);
 	}
 
-	public void evaluate() {
+	public void evaluate(String code) {
 		this.list = analyse(code);
+		
 		for (String elt : this.list) {
 			if (estValeur(elt)) {
 				pile.empiler(valeur(elt));
-			} else if (elt.equals("PLUS")) {
+			} else if (elt.equals("PLUS"))
 				pile.plus();
-			} else if (elt.equals("MULT"))
+			 else if (elt.equals("MULT"))
 				pile.mult();
+			 else if (elt.equals("DUP"))
+					pile.dup();
 			else {
-				System.out.println(elt);
+				evaluate(dico.analyse(elt));
 			}
 
 		}
@@ -62,7 +68,7 @@ public class Interpret {
 		FileReader file = new FileReader(filename);
 		BufferedReader br = new BufferedReader(file);
 		this.code = br.readLine();
-		evaluate();
+		evaluate(this.code);
 		pile.afficher();
 		br.close();
 	}

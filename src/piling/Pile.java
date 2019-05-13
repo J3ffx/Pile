@@ -56,6 +56,9 @@ public class Pile {
 		depiler();
 		empiler(sum);
 	}
+	public void dup() {
+		empiler(tab[sommet]);
+	}
 	
 
 }
