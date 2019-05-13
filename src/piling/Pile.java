@@ -22,12 +22,25 @@ public class Pile {
 		this.tab[sommet]=element;			
 	}
 	
+	public void depiler() {
+		this.sommet--;
+	}
+	
 	public int sumall() {
 		int sum = 0;
 		for(int elt:this.tab) {
 			sum+=elt;
 		}
 		return sum;
+	}
+	
+	public void plus() {
+		int sum;
+		sum=this.tab[sommet];
+		depiler();
+		sum+=this.tab[sommet];
+		depiler();
+		empiler(sum);
 	}
 	
 
