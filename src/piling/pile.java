@@ -1,6 +1,7 @@
 package piling;
 
 public class pile {
-suce ma bite
+suce ma bite connard mange tes mort
+
 
 }
