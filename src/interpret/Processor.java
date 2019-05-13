@@ -1,4 +1,4 @@
-package core;
+package interpret;
 
 import java.io.BufferedInputStream;
 import java.io.FileNotFoundException;
@@ -9,23 +9,27 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.util.TreeMap;
 
-public class Processor {
+public class Processor extends Thread{
 
 	private boolean terminated;
 	private TreeMap<String, Command> commands;
-	private Object system;
 	private InputStream in;
 	private PrintStream out;
 	private Scanner scanner;
+	private Object controller;
 
-	public Processor(Object system) {
+	public Processor(Object controller) {
 		this.commands = new TreeMap<String, Command>();
 		this.addCmd(new CommandMenu());
 		this.addCmd(new CommandQuit());
 		this.in = new BufferedInputStream(System.in);
 		this.out = new PrintStream(System.out);
 		this.scanner = new Scanner(this.in);
-		this.system = system;
+		this.controller = controller;
+	}
+
+	public Object getController() {
+		return controller;
 	}
 
 	public void addCmd(Command c) {
@@ -38,7 +42,7 @@ public class Processor {
 	}
 
 	public String fetch() throws IOException {
-		return this.scanner.next();
+		return this.scanner.nextLine();
 	}
 
 	public Command decode(String cmdName) throws ProcessorException {
@@ -75,12 +79,24 @@ public class Processor {
 		return this.scanner;
 	}
 
-	public Object getSystem() {
-		return this.system;
-	}
-
 	@Override
 	public String toString() {
 		return this.commands.keySet().toString();
 	}
+	
+	public void run() {
+		while(!this.isTerminated()){
+			System.out.print("-> ");
+			try {
+				this.execute(this.decode(this.fetch()));
+			} catch (IOException e) {
+				e.printStackTrace();
+			} catch (ProcessorException e) {
+				e.printStackTrace();
+			} catch (InputMismatchException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+
 }

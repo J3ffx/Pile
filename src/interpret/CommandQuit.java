@@ -1,4 +1,4 @@
-package core;
+package interpret;
 
 public class CommandQuit extends Command {
 	
