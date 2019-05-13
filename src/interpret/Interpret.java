@@ -28,7 +28,7 @@ public class Interpret {
 		return Integer.parseInt(s); 
 	}
 	
-	public void evaluate() {
+	public void evaluate(String code) {
 		
 	}
 	
