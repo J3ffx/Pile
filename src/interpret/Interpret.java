@@ -1,23 +1,22 @@
 package interpret;
 
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import dictionnaire.Dictionnaire;
+import dictionnary.Dictionnary;
 import piling.Pile;
 
 public class Interpret {
 	private String code;
 	private ArrayList<String> list;
 	private Pile pile;
-	private Dictionnaire dico;
+	private Dictionnary dico;
 
 	public Interpret() {
 		pile = new Pile();
-		dico = new Dictionnaire();
+		dico = new Dictionnary();
 
 	}
 

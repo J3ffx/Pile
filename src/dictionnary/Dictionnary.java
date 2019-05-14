@@ -1,14 +1,11 @@
-package dictionnaire;
+package dictionnary;
 
-import java.util.HashMap;
 import java.util.TreeMap;
 
-import piling.Pile;
-
-public class Dictionnaire {
+public class Dictionnary {
 	private TreeMap<String,String> dico;
 	
-	public Dictionnaire() {
+	public Dictionnary() {
 		this.dico = new TreeMap<String,String>();
 		this.dico.put("CARRE","DUP MULT");
 	
