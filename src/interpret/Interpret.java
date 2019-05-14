@@ -45,16 +45,16 @@ public class Interpret {
 
 	public void evaluate(String code) {
 		this.list = analyse(code);
-		
+
 		for (String elt : this.list) {
 			if (estValeur(elt)) {
 				pile.empiler(valeur(elt));
 			} else if (elt.equals("PLUS"))
 				pile.plus();
-			 else if (elt.equals("MULT"))
+			else if (elt.equals("MULT"))
 				pile.mult();
-			 else if (elt.equals("DUP"))
-					pile.dup();
+			else if (elt.equals("DUP"))
+				pile.dup();
 			else {
 				evaluate(dico.analyse(elt));
 			}
@@ -64,8 +64,7 @@ public class Interpret {
 	}
 
 	public void execute(String filename) throws IOException {
-		FileReader file = new FileReader(filename);
-		BufferedReader br = new BufferedReader(file);
+		BufferedReader br = new BufferedReader(new FileReader(filename));
 		this.code = br.readLine();
 		evaluate(this.code);
 		pile.afficher();

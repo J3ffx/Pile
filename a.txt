@@ -1,1 +1,1 @@
-1 2 PLUS CARRE
+2 CUBE

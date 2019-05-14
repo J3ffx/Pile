@@ -12,18 +12,20 @@ public class Pile {
 	}
 
 	public void afficher() {
-		int index=0;
-		while ( index <= sommet) {
+		int index = 0;
+		while (index <= sommet) {
 			System.out.println(tab[index]);
-			index++;}
+			index++;
+		}
 	}
 
 	public void empiler(int element) {
 		this.sommet++;
 		this.tab[sommet] = element;
 	}
+
 	public void emp1_10() {
-		for(int i=1;i<=10;i++)
+		for (int i = 1; i <= 10; i++)
 			empiler(i);
 	}
 
@@ -56,9 +58,9 @@ public class Pile {
 		depiler();
 		empiler(sum);
 	}
+
 	public void dup() {
 		empiler(tab[sommet]);
 	}
-	
 
 }
